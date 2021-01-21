@@ -1,4 +1,6 @@
 # Pra executar no windows mingw32-make
+# ./tp1 < tests/CasoTeste01c.in
+
 
 # == VARIAVEIS ===
 # ================
@@ -11,7 +13,7 @@
 # e eh chamada atraves do comando $(VAR)
 
 CC=g++ # compilador, troque para gcc se preferir utilizar C
-TARGET= tipoitem.cpp tipocelula.cpp lista_encadeada.cpp grafo_direcionado.cpp main.cpp
+TARGET= tipoitem.cpp tipocelula.cpp grafo_direcionado.cpp sistema_vacinas.cpp main.cpp
 CFLAGS=-Wall -Wextra # compiler flags, troque o que quiser, exceto bibliotecas externas
 EXEC=./tp1 # nome do executavel que sera gerado, nao troque
 TMPOUT=tp1.testresult
