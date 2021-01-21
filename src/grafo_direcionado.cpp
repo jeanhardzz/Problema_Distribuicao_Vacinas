@@ -29,19 +29,12 @@ void GrafoDirecionado::AdicionaAresta(TipoChave no1, TipoChave no2){
         this->n++;
     }
     aux = g.find(no2);
-    if(aux == g.end()){ //Se o no nao existe no grafo
-        //std::cout<<"oi";
+    if(aux == g.end()){ //Se o no nao existe no grafo        
         this->g[no2].push_back(no2);
         this->n++;
     }    
     this->m++;
-    this->g[no1].push_back(no2);
-
-    /* Caso eu queira garantir que nao vou adicionar duas arestas iguais
-    if(this->g[no1].Pesquisa(no2).GetChave() == -1){
-        this->g[no1].InsereFinal(no2);
-    }
-    */
+    this->g[no1].push_back(no2);  
 }
 
 void GrafoDirecionado::Imprime(){
@@ -51,9 +44,7 @@ void GrafoDirecionado::Imprime(){
             std::cout << *itv << " ";
         }
         std::cout <<"\n";                
-    }
-    
-    //https://www.delftstack.com/pt/howto/cpp/how-to-iterate-over-map-in-cpp/
+    }    
 }
 void GrafoDirecionado::ImprimeComCorrecao(int centro){
     for(auto &item : g){
@@ -62,9 +53,7 @@ void GrafoDirecionado::ImprimeComCorrecao(int centro){
             std::cout << *itv-centro << " ";
         }
         std::cout <<"\n";                
-    }
-    
-    //https://www.delftstack.com/pt/howto/cpp/how-to-iterate-over-map-in-cpp/
+    }        
 }
 
 void GrafoDirecionado::bfs(TipoChave s){
@@ -75,64 +64,37 @@ void GrafoDirecionado::bfs(TipoChave s){
 
     aux.push_back(s);
 
-    //Marcando todas as chaves como nao descobertas 
-       
+    //Marcando todas as chaves como nao descobertas      
     auto it = g.begin();
     while (it != g.end()) {        
         descobertos[it->first]=false;
         ++it;
     }
 
-    //s = true
     descobertos[s]=true;
 
-    //Testando se estao todas false
-    /*       
-    auto ita = descobertos.begin();
-    while (ita != descobertos.end()) {
-        std::cout << "[" << ita->first << ","<< ita->second << "] - ";
-        ++ita;
+    //Inicializando arvore com s
+    arvore_aux.push_back(aux);           
+    
+    while(arvore_aux[i].size() != 0){ // percorre as distancias 0 ate n
+        std::vector<TipoChave> aux_arestas;
+        for (unsigned int j=0;j<arvore_aux[i].size();j++){ // percorre o vetor q possuem os nos de uma distancia n                
+                std::vector<TipoChave> arestas;
+                arestas = g[arvore_aux[i][j]];                                
+                for (unsigned int k=1;k<arestas.size();k++){ //percorre os nos conectados ao um determiado no                    
+                    if(descobertos[arestas[k]]==false){
+                        descobertos[arestas[k]]=true;
+                        aux_arestas.push_back(arestas[k]);                    
+                    }
+                }            
+            }             
+            arvore_aux.push_back(aux_arestas);
+            i++;
     }
-    */
-
-   //Inicializando arvore com s
-   
-   arvore_aux.push_back(aux);   
-   
-   //std::cout <<"No analisado: "<< arvore[i][0] << "\n";
-   
-   while(arvore_aux[i].size() != 0){ // percorre as distancias 0 ate n
-       std::vector<TipoChave> aux_arestas;
-       for (unsigned int j=0;j<arvore_aux[i].size();j++){ // percorre o vetor q possuem os nos de uma distancia n
-            //std::cout <<"No analisado: "<< arvore_aux[i][j] << "\n";            
-            std::vector<TipoChave> arestas;
-            arestas = g[arvore_aux[i][j]];
-            //std::cout <<"e tamanho "<< arestas.size();  
-            
-            for (unsigned int k=1;k<arestas.size();k++){ //percorre os nos conectados ao um determiado no
-                //std::cout <<"Arestas de "<<itarvore[i][j]<<" : "<< arestas[k] << " ";  
-                if(descobertos[arestas[k]]==false){
-                    descobertos[arestas[k]]=true;
-                    aux_arestas.push_back(arestas[k]);                    
-                }
-            }
-            /*
-            std::cout <<"\nlista de arestas: ";
-            for (unsigned int p=0;p<aux_arestas.size();p++){
-                std::cout <<aux_arestas[p]<<" ";
-            }
-            */                        
-            //std::cout <<"\n";
-        }
-        //std::cout <<"\n";        
-        arvore_aux.push_back(aux_arestas);
-        i++;
-   }
-   arvore = arvore_aux;
+    arvore = arvore_aux;
 }
 
-void GrafoDirecionado::ImprimeArvore(){
-    //std::cout << "No " <<s<< "\n";
+void GrafoDirecionado::ImprimeArvore(){    
     for (unsigned int j=0;j<arvore.size();j++){
        std::cout << "Distancia " <<j<< ": ";
        for (unsigned int k=0;k<arvore[j].size();k++){
@@ -146,27 +108,42 @@ std::vector<std::vector<TipoChave>> GrafoDirecionado::GetArvore(){
     return this->arvore;
 }
 
-/*
+bool GrafoDirecionado::ContagemCiclosRecursivo(TipoChave v,std::map<TipoChave, bool> &visitados,std::map<TipoChave, bool> &revisitados){
+    if(visitados[v]==false){    
+        //marcando como visitado
+        visitados[v]=true;
+        revisitados[v]=true;
 
-
-
-std::vector<TipoChave> GrafoDirecionado::GetListaPostos(int distancia){
-    std::cout<<"Pegando arvore"<<"\n";    
-    std::vector<TipoChave> v;
-    for(int i=1;i<=distancia;i++){
-        std::cout<<"Tamanho da arvore: "<<arvore[i].GetTamanho()<<"\n";
-        std::cout<<"i:"<<i<<" - ";
-        for(int j=1;j<=arvore[i].GetTamanho();j++){
-            std::cout<<"j:"<<j<<"  ";
-            v.push_back(arvore[i].GetItem(j).GetChave());
+        std::vector<TipoChave>::iterator it;
+        for(it=g[v].begin()+1; it != g[v].end(); ++it){ //Começando do segundo termo porque o primeiro é o proprio no
+            if(!visitados[*it] && ContagemCiclosRecursivo(*it,visitados, revisitados)){
+                return true;
+            }else if(revisitados[*it]){
+                return true;
+            }                 
         }
-        std::cout<<"\n";
     }
-    for (std::vector<int>::iterator itv = v.begin() ; itv != v.end(); ++itv){
-      std::cout << *itv << " ";
-    } 
-    return v;
+    revisitados[v]=false; // ele nao foi revisitado
+    return false;    
 }
-*/
+
+bool GrafoDirecionado::ContagemCiclos(){        
+    
+    std::map<TipoChave, bool> visitados;
+    std::map<TipoChave, bool> revisitados;
+    
+    //inicializando vetores para usar na recursao
+    for (const auto &itemrev : g) {
+        visitados[itemrev.first]=false;
+        revisitados[itemrev.first]=false;
+    }   
+   
+    for (const auto &item : g) {
+        if(ContagemCiclosRecursivo(item.first,visitados,revisitados)){
+            return true;
+        }
+    }
+    return false;
+}
 
 

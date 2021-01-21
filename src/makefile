@@ -15,8 +15,8 @@
 CC=g++ # compilador, troque para gcc se preferir utilizar C
 TARGET= tipoitem.cpp tipocelula.cpp grafo_direcionado.cpp sistema_vacinas.cpp main.cpp
 CFLAGS=-Wall -Wextra # compiler flags, troque o que quiser, exceto bibliotecas externas
-EXEC=./tp1 # nome do executavel que sera gerado, nao troque
-TMPOUT=tp1.testresult
+EXEC=./tp01 # nome do executavel que sera gerado, nao troque
+TMPOUT=tp01.testresult #caso use testes
 
 # detect if running under unix by finding 'rm' in $PATH :
 ifeq ($(wildcard $(addsuffix /rm,$(subst :, ,$(PATH)))),)

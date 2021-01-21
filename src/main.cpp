@@ -13,6 +13,7 @@ int main(){
   covid.CalculaRotas();
   covid.ImprimeNumeroPostosPossiveis();
   covid.ImprimeListaPostosPossiveis();
+  covid.ImprimeContagemCiclos();  
 
 
   return 0;

@@ -26,20 +26,17 @@ void SistemaVacinas::Leitura(){
         std::stringstream ss;
         getline(std::cin, linha);
         ss << linha;
-        while(ss >> x){
-        //std::cout<<"centro: "<<i<<" - posto: "<<x+centro<<std::endl;
+        while(ss >> x){        
         if(x>0){
             grafo.AdicionaAresta(i,x+centro);
         }
         }  
-    }
-    //for(int i=centro+1;i<=posto+centro;i++){
+    }    
     int i=centro+1;
     while(getline(std::cin, linha)){
         std::stringstream ss;    
         ss << linha;
-        while(ss >> x){
-        //std::cout<<"posto: "<<i<<" - posto: "<<x+centro<<std::endl;
+        while(ss >> x){        
         if(x>0){
             grafo.AdicionaAresta(i,x+centro);
         }      
@@ -64,12 +61,10 @@ void SistemaVacinas::CalculaRotas(){
     }else{
         std::vector<std::vector<TipoChave>> arvore;        
     
-        for(int i=1;i<=centro;i++){
-            //std::cout<<"Centro "<<i<<"\n";
+        for(int i=1;i<=centro;i++){            
             grafo.bfs(i);
             arvore = grafo.GetArvore();
-            concatena(arvore, distancia);
-            //grafo.ImprimeArvore();
+            concatena(arvore, distancia);            
         }
 
         //ordenando lista pelo metodo de Selecao
@@ -102,7 +97,7 @@ void SistemaVacinas::ImprimeNumeroPostosPossiveis(){
     std::cout<<lista.size()<<std::endl;
 }
 
-void SistemaVacinas::Ordena(){
+void SistemaVacinas::Ordena(){ //selecao
     int i, j, min;
     int n = (int)lista.size();
     for (i = 0; i < n - 1; i++){
@@ -134,17 +129,8 @@ void SistemaVacinas::concatena(std::vector<std::vector<TipoChave>> arvore, int n
     }else{
         lista.insert(lista.end(), v.begin(), v.end());
     }
-    
-    /*reff https://www.techiedelight.com/concatenate-two-vectors-cpp/
+}
 
-    std::vector<int> x = { 1, 2, 3 };
-    std::vector<int> y = { 4, 5 };
-    std::vector<int> v(x);
-    v.insert(v.end(), y.begin(), y.end());
-    for(unsigned int k=0;k<v.size();k++){
-        std::cout<<v[k]<<" ";
-
-    }
-    */
-
+void SistemaVacinas::ImprimeContagemCiclos(){
+    std::cout<< grafo.ContagemCiclos()<<std::endl;        
 }

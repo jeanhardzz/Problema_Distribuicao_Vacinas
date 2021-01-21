@@ -21,7 +21,8 @@ class SistemaVacinas{
       void ImprimeGrafo();
       void ImprimeGrafoComCorrecao();
       void ImprimeListaPostosPossiveis(); 
-      void ImprimeNumeroPostosPossiveis();     
+      void ImprimeNumeroPostosPossiveis();
+      void ImprimeContagemCiclos();     
       std::map<TipoChave, std::vector<TipoChave>> GetGrafo();
       
 };
