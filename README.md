@@ -1,6 +1,5 @@
-# Problema_Distribuicao_Vacinas
+# O problema da rota de distribuição de vacinas
 # TP 01 -Trabalho Prático 1
-## O problema da rota de distribuição de vacinas
 
 ### Jean Lucas Almeida Mota
 
@@ -45,7 +44,7 @@ A classe GrafoDirecionado possui os métodos:
 	ImprimeArvore(): Imprime através do cout a árvore retornada pelo BFS. Caso o BFS não seja iniciado previamente, não imprime nada. 
 	bfs(s): Algoritmo de busca por largura que salva o resultado em uma matriz, onde cada linha n representa uma distância n do nó analisado no bfs. Pseudocódigo:
 
-´´´
+```
 bfs(vertice s){
   cria um map<vertice,booleano> descobertos; 
   marca cada vertice em descobertos como falso;
@@ -68,11 +67,11 @@ bfs(vertice s){
   }
   arvore = arvore_auxiliar; //variável global
 }
-´´´
+```
 
 	ContagemCiclos(): Usa uma versão modificada do DFS para verificar se há um caminho começando do centro de distribuição que percorre um mesmo posto duas vezes. Independente da temperatura das vacinas. Uma forma análoga de entender esse algoritmo é: identifica se há um ciclo no grafo começando do centro de distribuição. Usa o método auxiliar para recursão ContagemCiclosRecursivo(). Pseudocódigo:
 
-´´´
+```
 ContagemCiclos(centro){
     cria um map<vertice,booleano> visitados; 
     cria um map<vertice,booleano> revisitados; 
@@ -102,13 +101,13 @@ ContagemCiclosRecursivo(c,visitados,revisitados){
     revisitados[c]=false;
     retorna não existe ciclo;
 }
-´´´
+```
 
 Classe SistemaVacinas: É a classe de mais alto nível. É responsável por ler a entrada, usar os métodos da classe GrafoDirecionado para fazer as operações e imprimir a saída solução do problema. Possui os métodos:
 	Leitura(): Lê a entrada de dados preenche as variáveis centro, posto, temperatura e distância. Além, é claro, de preencher o grafo principal usando GrafoDirecionado.AdicionaAresta(no1,no2).
 	CalculaRotas(): Responsável por aplicar o algoritmo BFS em cada centro de distribuição e recolher os postos alcançáveis. Pseudocódigo:
 
-´´´
+```
 CalculaRotas(){
     testa se a temperatura permite percorrer uma distancia maior que zero;
     for(cada centro c){
@@ -120,7 +119,7 @@ CalculaRotas(){
     retira os vertices repetidos dessa lista;
     translada os vertices para ajustar a resposta;
 }
-´´´
+```
 
 	Concatena(arvore,distancia): É responsável por preencher uma lista de vértices que estão a uma dada distância usando uma árvore criada pelo algoritmo BFS.
 	Ordena(): Ordena a lista de vértices que foi preenchida por Concatena(arvore,distancia).
