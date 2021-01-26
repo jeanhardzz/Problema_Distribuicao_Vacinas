@@ -24,7 +24,7 @@ class GrafoDirecionado{
         void ImprimeComCorrecao(int centro);
         void bfs(TipoChave s);
         void ImprimeArvore();
-        bool ContagemCiclos();
+        bool ContagemCiclos(int centro);
         bool ContagemCiclosRecursivo(TipoChave v, std::map<TipoChave, bool> &visitados,std::map<TipoChave, bool> &revisitados);        
 };
 

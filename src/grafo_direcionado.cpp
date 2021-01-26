@@ -127,7 +127,7 @@ bool GrafoDirecionado::ContagemCiclosRecursivo(TipoChave v,std::map<TipoChave, b
     return false;    
 }
 
-bool GrafoDirecionado::ContagemCiclos(){        
+bool GrafoDirecionado::ContagemCiclos(int centro){        
     
     std::map<TipoChave, bool> visitados;
     std::map<TipoChave, bool> revisitados;
@@ -138,11 +138,19 @@ bool GrafoDirecionado::ContagemCiclos(){
         revisitados[itemrev.first]=false;
     }   
    
+    for (int i=1;i<=centro;i++){
+      if(ContagemCiclosRecursivo(g[i][0],visitados,revisitados)){
+            return true;
+        }
+
+    }
+    /*
     for (const auto &item : g) {
         if(ContagemCiclosRecursivo(item.first,visitados,revisitados)){
             return true;
         }
     }
+    */
     return false;
 }
 

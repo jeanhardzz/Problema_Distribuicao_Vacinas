@@ -132,5 +132,5 @@ void SistemaVacinas::concatena(std::vector<std::vector<TipoChave>> arvore, int n
 }
 
 void SistemaVacinas::ImprimeContagemCiclos(){
-    std::cout<< grafo.ContagemCiclos()<<std::endl;        
+    std::cout<< grafo.ContagemCiclos(centro)<<std::endl;        
 }
