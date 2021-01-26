@@ -36,13 +36,20 @@ A fim de modularizar a implementação, foi implementado duas classes principais
 Classe GrafoDirecionado: Classe de mais baixo nível, onde foi implementado a estrutura grafo utilizando lista adjacente. Esta foi implementada usando vector da biblioteca padrão C++. 
 A fim de simplificar a implementação, a árvore retornada pelo algoritmo BFS foi armazenada em uma lista de listas. Onde a lista-n representa os nós que estão à distância n. 
 A classe GrafoDirecionado possui os métodos:
+
 	Getters e Setters para o número de arestas (m) e o número de nós (n).
-	GetArvore(): retorna a árvore criada pelo algoritmo BFS. Caso o BFS não seja iniciado previamente, ela retorna nulo. 
+	
+    GetArvore(): retorna a árvore criada pelo algoritmo BFS. Caso o BFS não seja iniciado previamente, ela retorna nulo. 
+
 	AdicionaAresta(no1, no2): Adiciona a aresta do no1 para o no2 na lista de adjacência. Caso algum dos vértices não estejam na lista, inicia o mesmo criando uma aresta para ele mesmo.
+
 	Imprime(): Imprime através do cout a lista de adjancencia.
-	ImprimeComCorrecao(centro): Imprime através do cout a lista de adjancencia voltando a translação feita ao iniciar o grafo.
-	ImprimeArvore(): Imprime através do cout a árvore retornada pelo BFS. Caso o BFS não seja iniciado previamente, não imprime nada. 
-	bfs(s): Algoritmo de busca por largura que salva o resultado em uma matriz, onde cada linha n representa uma distância n do nó analisado no bfs. Pseudocódigo:
+	
+    ImprimeComCorrecao(centro): Imprime através do cout a lista de adjancencia voltando a translação feita ao iniciar o grafo.
+	
+    ImprimeArvore(): Imprime através do cout a árvore retornada pelo BFS. Caso o BFS não seja iniciado previamente, não imprime nada. 
+	
+    bfs(s): Algoritmo de busca por largura que salva o resultado em uma matriz, onde cada linha n representa uma distância n do nó analisado no bfs. Pseudocódigo:
 
 ```
 bfs(vertice s){
@@ -105,8 +112,10 @@ ContagemCiclosRecursivo(c,visitados,revisitados){
 ```
 
 Classe SistemaVacinas: É a classe de mais alto nível. É responsável por ler a entrada, usar os métodos da classe GrafoDirecionado para fazer as operações e imprimir a saída solução do problema. Possui os métodos:
-	Leitura(): Lê a entrada de dados preenche as variáveis centro, posto, temperatura e distância. Além, é claro, de preencher o grafo principal usando GrafoDirecionado.AdicionaAresta(no1,no2).
-	CalculaRotas(): Responsável por aplicar o algoritmo BFS em cada centro de distribuição e recolher os postos alcançáveis. Pseudocódigo:
+
+Leitura(): Lê a entrada de dados preenche as variáveis centro, posto, temperatura e distância. Além, é claro, de preencher o grafo principal usando GrafoDirecionado.AdicionaAresta(no1,no2).
+
+CalculaRotas(): Responsável por aplicar o algoritmo BFS em cada centro de distribuição e recolher os postos alcançáveis. Pseudocódigo:
 
 ```
 CalculaRotas(){
@@ -122,13 +131,20 @@ CalculaRotas(){
 }
 ```
 
-	Concatena(arvore,distancia): É responsável por preencher uma lista de vértices que estão a uma dada distância usando uma árvore criada pelo algoritmo BFS.
-	Ordena(): Ordena a lista de vértices que foi preenchida por Concatena(arvore,distancia).
-	ImprimeGrafo(): Faz a impressão do objeto gráfico com o qual estou trabalhando. Função útil para debug.
-	ImprimeGrafoComCorrecao(): Faz a impressão do objeto grafo com o qual estou trabalhando transladado. Função útil para debug
-	ImprimeListaPostosPossiveis(): Imprime a lista de postos alcançáveis. Esse método apenas imprime, logo deve-se antes fazer o uso dos métodos CalculaRotas(), Concatena(arvore,distancia) e Orderna().
-	ImprimeNumeroPostosPossiveis(): Imprime o número de postos alcançáveis. Esse método apenas imprime, logo deve-se antes fazer o uso dos métodos CalculaRotas(), Concatena(arvore,distancia) e Orderna().
-	ImprimeContagemCiclos(): Imprime 1 se há um caminho que passa por um posto mais de uma vez partindo de um centro de distribuição e 2 se não há. 
+Concatena(arvore,distancia): É responsável por preencher uma lista de vértices que estão a uma dada distância usando uma árvore criada pelo algoritmo BFS.
+
+Ordena(): Ordena a lista de vértices que foi preenchida por Concatena(arvore,distancia).
+
+ImprimeGrafo(): Faz a impressão do objeto gráfico com o qual estou trabalhando. Função útil para debug.
+
+ImprimeGrafoComCorrecao(): Faz a impressão do objeto grafo com o qual estou trabalhando transladado. Função útil para debug
+
+ImprimeListaPostosPossiveis(): Imprime a lista de postos alcançáveis. Esse método apenas imprime, logo deve-se antes fazer o uso dos métodos CalculaRotas(), Concatena(arvore,distancia) e Orderna().
+
+ImprimeNumeroPostosPossiveis(): Imprime o número de postos alcançáveis. Esse método apenas imprime, logo deve-se antes fazer o uso dos métodos 
+CalculaRotas(), Concatena(arvore,distancia) e Orderna().
+
+ImprimeContagemCiclos(): Imprime 1 se há um caminho que passa por um posto mais de uma vez partindo de um centro de distribuição e 2 se não há. 
 
 ## 4. Conclusão
 Após a leitura do problema proposto, nota-se o uso essencial da estrutura grafo. O uso dessa estrutura simplifica muito a resolução do problema, principalmente por causa dos algoritmos BFS e DFS. O grande esforço deste trabalho estava em adaptar o uso dessas estruturas a fim de torna-las mais especificas para o problema proposto.
