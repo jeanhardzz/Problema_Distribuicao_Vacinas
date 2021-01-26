@@ -66,10 +66,11 @@ bfs(vertice s){
       i++
   }
   arvore = arvore_auxiliar; //variável global
-}
+}	
+
 ```
 
-	ContagemCiclos(): Usa uma versão modificada do DFS para verificar se há um caminho começando do centro de distribuição que percorre um mesmo posto duas vezes. Independente da temperatura das vacinas. Uma forma análoga de entender esse algoritmo é: identifica se há um ciclo no grafo começando do centro de distribuição. Usa o método auxiliar para recursão ContagemCiclosRecursivo(). Pseudocódigo:
+ContagemCiclos(): Usa uma versão modificada do DFS para verificar se há um caminho começando do centro de distribuição que percorre um mesmo posto duas vezes. Independente da temperatura das vacinas. Uma forma análoga de entender esse algoritmo é: identifica se há um ciclo no grafo começando do centro de distribuição. Usa o método auxiliar para recursão ContagemCiclosRecursivo(). Pseudocódigo:
 
 ```
 ContagemCiclos(centro){
