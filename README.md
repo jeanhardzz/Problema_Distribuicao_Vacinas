@@ -1,7 +1,4 @@
 # Problema_Distribuicao_Vacinas
-Trabalho Prático da Disciplina Algoritmos 1 - DCC206 - UFMG
-
-
 # TP 01 -Trabalho Prático 1
 ## O problema da rota de distribuição de vacinas
 
