@@ -163,7 +163,7 @@ make
 Observação: Os testes foram executados através do comando:
 ./tp01 < CasoTeste01a.txt
 
-References
+## 6. References
 
 ALMEIDA, M Jussara. Slide Graph Traversal (2021). Disciplina Algoritmos 1 DCC206 UFMG.
 
